@@ -15,24 +15,24 @@ const DetailProductPage = ({ product }: { product: ProductType }) => {
             {/* Client-side */}
             {/* <DetailProduct product={isLoading ? {} : data.data}></DetailProduct> */}
             {/* Server-side */}
-            {/* <DetailProduct product={product}></DetailProduct> */}
+            <DetailProduct product={product}></DetailProduct>
         </div>
     );
 };
 
 export default DetailProductPage;
 
-// export async function getServerSideProps({ params }: { params: { product: string } }) {
-//     // fetch ada
-//     const res = await fetch(`http://localhost:3000/api/product/${params.product}`);
-//     const response = await res.json();
+export async function getServerSideProps({ params }: { params: { product: string } }) {
+    // fetch ada
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/product/${params.product}`);
+    const response = await res.json();
 
-//     return {
-//         props: {
-//             product: response.data,
-//         },
-//     };
-// }
+    return {
+        props: {
+            product: response.data,
+        },
+    };
+}
 
 // export async function getStaticPaths() {
 //     const res = await fetch(`http://localhost:3000/api/product`);

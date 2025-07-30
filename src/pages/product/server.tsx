@@ -14,7 +14,7 @@ export default ProductPage;
 
 export async function getServerSideProps() {
     // fetch ada
-    const res = await fetch("http://localhost:3000/api/product");
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/product`);
     const response = await res.json();
 
     return {
